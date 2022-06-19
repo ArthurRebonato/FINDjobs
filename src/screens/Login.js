@@ -3,6 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image} from 'react-native';
 import * as loginService from "../services/LoginService"
 import { CheckBox } from '@rneui/themed';
+import { useSelector, useDispatch } from 'react-redux';
+import * as UserAction from '../services/actions/userActions'
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
@@ -11,6 +13,9 @@ export default function Login(props) {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
     const [lembreme, setLembreme] = useState("")
+
+    const dispatch = useDispatch()
+
     const {navigation} = props
 
     const verificarLembreme = async() => {
@@ -31,6 +36,7 @@ export default function Login(props) {
     const efetuarLogin = async() => {
         try {
             let user = await loginService.login(email, senha)
+            dispatch(UserAction.setUser(user))
             navigation.replace("Home")
         } catch (error) {
             Alert.alert("Erro ao efetuar login", error)
@@ -109,9 +115,9 @@ export default function Login(props) {
 
 const styles = StyleSheet.create({
     container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#0ed7fd'
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#0ed7fd'
     },
     containerLogin: {
         backgroundColor: '#fff',

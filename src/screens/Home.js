@@ -18,13 +18,33 @@ export default function Home(props) {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitleAlign: "center",
+            headerLeft: () => <Button title='Registros' onPress={() => navigation.navigate("CadastroVagas")} />,
             headerRight: () => <Button title='Logoff' color='red' onPress={logoff} />
         })
     }, [])
 
   return (
-    <View>
-      <Text>Home</Text>
+    <View style={styles.container}>
+      <View style={styles.linha}>
+        <View>
+          <Button title='Info'/>
+        </View>
+        <View style={styles.colunaBotao}>
+          <Button title='FAQ'/>
+        </View>
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+      padding: 10,
+      margin: 5
+  }, linha: {
+      flexDirection: "row"
+  }, colunaBotao: {
+    flex: 1,
+    flexDirection: "row-reverse",
+  }
+})
