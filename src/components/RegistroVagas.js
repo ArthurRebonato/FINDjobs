@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Button, Alert } from 'react-native'
 import React from 'react'
 import * as vagaService from "../services/VagaService"
 
-export default function Registro(props) {
+export default function RegistroVagas(props) {
 
     const data = props.dados
 
@@ -22,43 +22,51 @@ export default function Registro(props) {
                         } catch (error) {
                           Alert.alert("Você não possui permissão para excluir esse registro!")
                         }
-                        
                     }
                 }
             ])
-            
         } catch (error) {
             
         }
     }
 
+    const botaoExcluir = () => {
+      if (props.excluir === true) {
+        return <Button title='Excluir' color='red' onPress={excluirVaga}/>
+      } else {
+        return 
+      }
+    }
+
   return (
     <View style={styles.container}>
       <View style={styles.linha}>
-        <Button title='Excluir' color='red' onPress={excluirVaga} />
-      </View>
-      <View style={styles.linha}>
         <View style={styles.coluna}>
-            <Text style={styles.campo}>Empresa:</Text>
-            <Text>{data.nome_empresa}</Text>
+              <Text style={styles.campo}>Empresa:</Text>
+              <Text style={styles.textDados}>{data.nome_empresa}</Text>
+        </View>
+        <View style={styles.colunaBotao}>
+            <View>
+                {botaoExcluir()}
+            </View>
         </View>
       </View>
       <View style={styles.linha}>
         <View style={styles.coluna}>
             <Text style={styles.campo}>Cargo:</Text>
-            <Text>{data.cargo_vaga}</Text>
+            <Text style={styles.textDados}>{data.cargo_vaga}</Text>
         </View>
       </View>
       <View style={styles.linha}>
         <View style={styles.coluna}>
             <Text style={styles.campo}>Endereço:</Text>
-            <Text>{data.endereco}</Text>
+            <Text style={styles.textDados}>{data.endereco}</Text>
         </View>
       </View>
       <View style={styles.linha}>
         <View style={styles.coluna}>
             <Text style={styles.campo}>Contato:</Text>
-            <Text>{data.numero_contato}</Text>
+            <Text style={styles.textDados}>{data.numero_contato}</Text>
         </View>
       </View>
     </View>
@@ -78,6 +86,13 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row"
     }, campo: {
-        width: 90
+        width: 75,
+        fontWeight: "bold"
+    }, textDados: {
+        width: "85%"
+    }, colunaBotao: {
+      flex: 1,
+      flexDirection: "row-reverse",
+      marginLeft: 10
     }
 })

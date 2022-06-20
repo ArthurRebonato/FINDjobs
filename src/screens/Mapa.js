@@ -1,5 +1,6 @@
-import React, { useState, useLayoutEffect, useEffect} from 'react'
-import { StyleSheet, Text, View, TextInput, Button, Alert, FlatList, Dimensions} from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, View, Alert, Dimensions } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import MapView, {Marker} from 'react-native-maps';
 import * as Location from "expo-location"
 import * as vagaService from '../services/VagaService'
@@ -8,6 +9,7 @@ import { useSelector } from 'react-redux';
 export default function Mapa(props) {
     const user = useSelector(store => store.user)
     const {navigation} = props
+
     const [vagas, setVagas] = useState([])
     const [location, setLocation] = useState({
         coords: {
@@ -51,8 +53,10 @@ export default function Mapa(props) {
             longitudeDelta: 0.01,
         }}>
             {location && <Marker coordinate={
-                {latitude: location.coords.latitude, 
-                longitude: location.coords.longitude}
+                {
+                    latitude: location.coords.latitude, 
+                    longitude: location.coords.longitude
+                }
                 }
                 title={user.email}
                 icon={require("../../assets/my_location.png")}
@@ -71,6 +75,8 @@ export default function Mapa(props) {
             />)}
 
       </MapView>
+
+      <StatusBar style="light"/>
     </View>
   )
 }

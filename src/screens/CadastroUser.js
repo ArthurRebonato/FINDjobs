@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Alert} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, Image} from 'react-native';
 import * as loginService from "../services/LoginService"
 
 export default function CadastroUser(props) {
@@ -23,6 +23,12 @@ export default function CadastroUser(props) {
   return (
     <View style={styles.container}>
     <View style={styles.containerLogin}>
+        <View style={styles.imagemContainer} >
+            <Image 
+                style={styles.imagemLogo} 
+                source={require("../../assets/logo.png")}
+            />
+        </View>
         <View>
             <Text style={styles.texto}>Informe suas credenciais!</Text>
         </View>
@@ -54,7 +60,7 @@ export default function CadastroUser(props) {
         </View>
         
 
-        <StatusBar style="auto" />
+        <StatusBar style="light"/>
     </View>
     </View>
   );
@@ -62,9 +68,9 @@ export default function CadastroUser(props) {
 
 const styles = StyleSheet.create({
     container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#0ed7fd'
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#b3b3b3'
     },
     containerLogin: {
         backgroundColor: '#fff',
@@ -91,5 +97,12 @@ const styles = StyleSheet.create({
         marginLeft: 10
     }, botao: {
         margin: 10
+    }, imagemLogo: {
+        width: 220,
+        height: 200
+    }, imagemContainer: {
+        alignItems: 'center',
+        marginTop: 1,
+        marginBottom: 10
     }
 });

@@ -2,8 +2,8 @@ import React, { useState, useLayoutEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert, FlatList } from 'react-native';
 import * as vagaService from "../services/VagaService"
-import Registro from '../components/Registro';
-import { useDispatch, useSelector } from 'react-redux';
+import RegistroVagas from '../components/RegistroVagas';
+import { useSelector } from 'react-redux';
 
 export default function CadastroVagas(props) {
   const [form, setForm] = useState({})
@@ -21,6 +21,9 @@ export default function CadastroVagas(props) {
   }
 
   useLayoutEffect(() => {
+    navigation.setOptions({
+        headerTitleAlign: "center"
+    })
     buscarVagas()
   }, [])
 
@@ -32,7 +35,7 @@ export default function CadastroVagas(props) {
                 await vagaService.createVaga(form, user.uid)
                 Alert.alert("Dados registrado com sucesso!")
                 setForm({})
-                navigation.navigate("Home", {atualizar: true})
+                navigation.navigate("AllVagas", {atualizar: true})
             } catch (error) {
                 Alert.alert("Erro ao registrar dados!")
             }
@@ -43,21 +46,6 @@ export default function CadastroVagas(props) {
   
     return (
         <View style={styles.container}>
-            <View style={styles.linha}>
-                <View style={styles.botao}>
-                    <Button 
-                        title='Cadastrar'
-                    />
-                </View>
-                <View style={styles.colunaBotao}>
-                    <View style={styles.botao}>
-                        <Button 
-                            title='Mapa'
-                            onPress={() => navigation.navigate("Mapa")}
-                        />
-                    </View>
-                </View>
-            </View>
             <Text style={styles.texto}>Informe os dados da Vaga:</Text>
             <View style={styles.caixaTexto}>
                 <TextInput style={styles.textoInput}
@@ -121,10 +109,10 @@ export default function CadastroVagas(props) {
                 </View>
             </View>
 
-            <StatusBar style="auto" />
-
+            <StatusBar style="light"/>
+            <Text style={styles.texto}>Minhas Vagas:</Text>
             <FlatList data={vagas} 
-                renderItem={({item}) => <Registro dados= {item} buscarVagas={buscarVagas}/>}
+                renderItem={({item}) => <RegistroVagas dados={item} buscarVagas={buscarVagas} excluir={true}/>}
                 keyExtractor={item => item.key}
             />
         </View >
@@ -158,7 +146,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight:'bold',
         textAlign: 'center',
-        marginBottom: 8
+        marginBottom: 9
     }, textoInput: {
         marginLeft: 10
     }, botao: {

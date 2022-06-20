@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image} from 'react-native';
 import * as loginService from "../services/LoginService"
 import { CheckBox } from '@rneui/themed';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as UserAction from '../services/actions/userActions'
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -30,7 +30,10 @@ export default function Login(props) {
     }
 
     useLayoutEffect(() => {
-      verificarLembreme()
+        navigation.setOptions({
+            headerTitleAlign: "center"
+        })
+        verificarLembreme()
     }, [])
 
     const efetuarLogin = async() => {
@@ -58,57 +61,56 @@ export default function Login(props) {
 
   return (
     <View style={styles.container}>
-    <View style={styles.containerLogin}>
-        {/*<View style={styles.imagemContainer} >
-            <Image 
-                style={styles.imagem} 
-                source={require('../Images/GastoCarro.png')}
-            />
-        </View> */}
-        <View>
-            <Text style={styles.texto}>Informe suas credenciais!</Text>
-        </View>
-        <View style={styles.caixaTexto}>
-            <TextInput style={styles.textoInput}
-                placeholder='Informe seu Email'
-                autoCapitalize='none'
-                keyboardType='email-address'   
-                value={email}
-                onChangeText={(e) => setEmail(e)}
-            />
-        </View>
-        <View style={styles.caixaTexto}>
-            <TextInput style={styles.textoInput}
-                placeholder='Informe sua Senha'
-                autoCapitalize='none'
-                secureTextEntry
-                value={senha}
-                onChangeText={(e) => setSenha(e)}
-            />
-        </View>
-        <View>
-            <CheckBox 
-                title="Lembre-me" 
-                checked={lembreme} 
-                onPress={lembrar}/>
-            <View style={styles.botao}>
-            <Button 
-                title='Logar'
-                onPress={efetuarLogin}
-            />
-            </View>
-            <View style={styles.botao}>
-                <Button 
-                    title='Cadastre-se'
-                    onPress={() => navigation.navigate("CadastroUser")}
-                    color='red'
+        <View style={styles.containerLogin}>
+            <View style={styles.imagemContainer} >
+                <Image 
+                    style={styles.imagemLogo} 
+                    source={require("../../assets/logo.png")}
                 />
             </View>
-        </View>
-        
+            <View>
+                <Text style={styles.texto}>Informe suas credenciais!</Text>
+            </View>
+            <View style={styles.caixaTexto}>
+                <TextInput style={styles.textoInput}
+                    placeholder='Informe seu Email'
+                    autoCapitalize='none'
+                    keyboardType='email-address'   
+                    value={email}
+                    onChangeText={(e) => setEmail(e)}
+                />
+            </View>
+            <View style={styles.caixaTexto}>
+                <TextInput style={styles.textoInput}
+                    placeholder='Informe sua Senha'
+                    autoCapitalize='none'
+                    secureTextEntry
+                    value={senha}
+                    onChangeText={(e) => setSenha(e)}
+                />
+            </View>
+            <View>
+                <CheckBox 
+                    title="Lembre-me" 
+                    checked={lembreme} 
+                    onPress={lembrar}/>
+                <View style={styles.botao}>
+                <Button 
+                    title='Logar'
+                    onPress={efetuarLogin}
+                />
+                </View>
+                <View style={styles.botao}>
+                    <Button 
+                        title='Cadastre-se'
+                        onPress={() => navigation.navigate("CadastroUser")}
+                        color='red'
+                    />
+                </View>
+            </View>
 
-        <StatusBar style="auto" />
-    </View>
+            <StatusBar style="light"/>
+        </View>
     </View>
   );
 }
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#0ed7fd'
+        backgroundColor: '#b3b3b3'
     },
     containerLogin: {
         backgroundColor: '#fff',
@@ -128,15 +130,13 @@ const styles = StyleSheet.create({
         margin: 5
     }, lista: {
         height: 280
-    }, imagem: {
-        borderWidth: 3,
-        borderRadius: 50,
-        borderColor: "black",
-        width: 200,
-        height: 180
+    }, imagemLogo: {
+        width: 220,
+        height: 200
     }, imagemContainer: {
         alignItems: 'center',
-        padding: 20
+        marginTop: 1,
+        marginBottom: 10
     }, texto: {
         fontSize: 16,
         fontWeight:'bold',
