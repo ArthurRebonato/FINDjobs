@@ -37,7 +37,7 @@ export default function CadastroVagas(props) {
                 setForm({})
                 navigation.navigate("AllVagas", {atualizar: true})
             } catch (error) {
-                Alert.alert("Erro ao registrar dados!")
+                Alert.alert("Erro ao registrar dados!", error.message)
             }
     } else {
         Alert.alert("Campos preenchidos incorretamente - em branco!")

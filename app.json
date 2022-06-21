@@ -24,7 +24,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png"
       },
-      "package": "com.arthurrebonato.FINDjobs"
+      "package": "com.arthurrebonato.FINDjobs",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB2Obrp2Y-KFK5QhWgCqW5LY5HAly-kQv8"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
