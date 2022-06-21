@@ -22,9 +22,9 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/icon.png"
+      },
+      "package": "com.arthurrebonato.FINDjobs"
     },
     "web": {
       "favicon": "./assets/favicon.png"
