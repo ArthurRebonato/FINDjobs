@@ -5,6 +5,9 @@ Projeto desenvolvido para a Disciplina de Tópicos Especiais em Computação - R
 # Professor
 Marcos R. Santos
 
+# Build Apk
+https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40arthurrebonato/FINDjobs-9e1de24341d24252b3b5359024c53cfb-signed.apk
+
 # Tutorial
 
 ### Login e Cadastro
